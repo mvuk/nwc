@@ -19,7 +19,7 @@ It includes:
 
 ## Motivation
 
-Ark wallets such as bark, Arkade and Wavelength hold bitcoin off-chain as VTXOs on an Ark server. Two users of the same Ark server can pay each other directly: the payment is cosigned by the server and takes effect in seconds, without a round, an on-chain transaction or a Lightning route.
+Ark wallets such as Bark, Arkade and Wavelength hold bitcoin off-chain as VTXOs on an Ark server. Two users of the same Ark server can pay each other directly: the payment is cosigned by the server and takes effect in seconds, without a round, an on-chain transaction or a Lightning route.
 
 These wallets already expose Lightning through NWC core. But an Ark payment is not a Lightning payment:
 
@@ -319,7 +319,7 @@ Ark payments to an address arrive without a prior request from the client, so no
 1. The **client** calls `get_info`. The result lists `pay_ark_address` in `methods` and `XX` in `extensions`, and contains `"ark": {"server_pubkey": "038202bebd..."}`.
 2. The recipient's profile, or a BIP-321 URI they shared, contains an Ark address. Examples of the two BOAT-0001 versions in use today:
     - version 0, used by Arkade: `ark1qzpq904am6clw3pgqwyh4p02708fy4xs0hcpwt7rwfdttuxsjameetl3ujgrw8089sl27rtp79aqcl0xspkahwnm4teg5lmhe47pxulw9m6rn8`
-    - version 1, used by bark: `ark1pwh9vsmezqqpjy9akejayl2vvcse6he97rn40g84xrlvrlnhayuuyefrp9nse2yspqqjl5wpy`
+    - version 1, used by Bark: `ark1pwh9vsmezqqpjy9akejayl2vvcse6he97rn40g84xrlvrlnhayuuyefrp9nse2yspqqjl5wpy`
 3. The **client** checks whether the address is for the wallet's Ark server, as described under [`get_info`](#get_info). If it is not, the client pays a Lightning invoice instead.
 4. The **client** calls `pay_ark_address` with the address, the amount and a fresh `idempotency_key`.
 5. The **wallet service** checks the address, pays and returns a `transaction_id` and a `state`. If the response is lost, the **client** retries with the same `idempotency_key`, or calls `lookup_payment` with it. The payment is never made twice.
