@@ -300,6 +300,8 @@ When a wallet supports both this specification and [02.md](02.md), it SHOULD sen
 
 For an Ark payment, the `notification` object is the common payment record envelope with `payment_type: "ark"`, the same object `lookup_payment` would return. It has no `invoice`, `payment_hash` or `preimage`.
 
+Ark payment records, whether returned by `pay_ark_address`, `lookup_payment` or `list_transactions` or sent in a notification, never contain a `payment_hash`. Clients MUST NOT assume a `payment_hash` when `payment_type` is `ark`.
+
 Clients SHOULD check `payment_type` before reading BOLT11 fields from a notification.
 
 Ark payments to an address arrive without a prior request from the client, so notifications are the main way for a client to learn about them.
